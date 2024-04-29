@@ -6,7 +6,10 @@ public class Player {
     public Player() {
         player = new Rectangle(25, 25, 25, 25);
         player.draw();
+        player.
     }
+
+
 
     public void moveRight() {
         player.translate(10, 0);
