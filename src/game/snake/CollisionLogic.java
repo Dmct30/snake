@@ -7,19 +7,16 @@ public class CollisionLogic {
     private Player player;
     private Apple apple;
 
-    public boolean collisionDetected(Player player, Apple apple) {
-       if (player.getPlayerCol() + player.getPlayerWidth() > apple.getAppleCol()
-                && player.getPlayerRow() + player.getPlayerHeight() > apple.getAppleRow()
-                && player.getPlayerCol() < apple.getAppleCol() + apple.getAppleWidth()
-                && player.getPlayerRow() < apple.getAppleRow() + apple.getAppleHeight()) {
-
-           System.out.println("ssssdadasd");
-           return true;
-
-        }
-       return false;
-    }
-
-
+//    public void collisionDetected(Player player, Apple apple) {
+//       if (player.getPlayerCol() + player.getPlayerWidth() > apple.getAppleCol()
+//                && player.getPlayerRow() + player.getPlayerHeight() > apple.getAppleRow()
+//                && player.getPlayerCol() < apple.getAppleCol() + apple.getAppleWidth()
+//                && player.getPlayerRow() < apple.getAppleRow() + apple.getAppleHeight()) {
+//
+//           System.out.println("Colided");
+//           apple.eat();
+//        }
+//
+//    }
 
 }

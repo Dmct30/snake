@@ -4,24 +4,23 @@ public class Game {
 
     private Grid grid;
     private Player player;
+    private Apple apple;
     private int delay;
-    private int velocityCol;
-    private int velocityRow;
-
+    public Background background;
 
     Game(int cols, int rows, int delay) {
 
         grid = new Grid(cols, rows);
-        Background background = new Background();
-        KeyboardLogic keyboardLogic = new KeyboardLogic();
+        background = new Background();
+        apple = new Apple(grid);
+        player = new Player(grid);
         CollisionLogic collisionLogic = new CollisionLogic();
-        Player player = new Player(grid);
+        KeyboardLogic keyboardLogic = new KeyboardLogic(collisionLogic);
         Player collisionBox = new Player(grid);
-        Apple apple = new Apple(grid);
         keyboardLogic.setPlayer(player);
+        keyboardLogic.setApple(apple);
         keyboardLogic.setCollisionBox(collisionBox);
         this.delay = delay;
-
     }
 
     public void init(){
@@ -31,20 +30,28 @@ public class Game {
     public void start() throws InterruptedException {
 
         while (true) {
-            velocityCol = 1;
-            velocityRow = 1;
 
             // Pause for a while
             Thread.sleep(delay);
-
+            checkCollision(player, apple);
           //  moveSnake();
 
         }
     }
 
+    public void checkCollision (Player player, Apple apple) {
+//        if (player.getPlayerCol() + player.getPlayerWidth() > apple.getAppleCol()
+//                && player.getPlayerRow() + player.getPlayerHeight() > apple.getAppleRow()
+//                && player.getPlayerCol() < apple.getAppleCol() + apple.getAppleWidth()
+//                && player.getPlayerRow() < apple.getAppleRow() + apple.getAppleHeight()) {
 
-    //public void moveSnake() {
-       // Player.getPlayerCol() += velocityCol;
-       // player.getPlayerRow() += velocityRow;
-    //}
+        if (player.getPlayerCol() == apple.getAppleCol()
+        && player.getPlayerRow() == apple.getAppleRow()) {
+
+            System.out.println("Colided");
+            apple.eat();
+        }
+
+    }
+
 }

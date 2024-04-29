@@ -10,6 +10,7 @@ public class Apple {
     private int col;
     private int row;
     private Rectangle appleCollisionBox;
+    public  boolean eaten = false;
 
     public Apple(Grid grid){
         this.grid = grid;
@@ -21,8 +22,8 @@ public class Apple {
         apple.fill();
     }
 
-    public Rectangle getApplePos(){
-        return this.apple;
+    public Rectangle apple(){
+        return apple;
     }
 
     public int getAppleCol() {
@@ -40,4 +41,14 @@ public class Apple {
     public int getAppleHeight(){
         return row + grid.getCellSize();
     }
+
+    public boolean isEaten() {
+        return eaten;
+    }
+    public void eat() {
+        eaten = true;
+        apple.delete();
+        System.out.println("Here");
+    }
+
 }
