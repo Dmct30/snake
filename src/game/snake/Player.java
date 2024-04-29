@@ -56,5 +56,10 @@ public class Player {
         player.translate(0, GameConfig.GAMESPEED);
         collisionBox.translate(0,GameConfig.GAMESPEED);
     }
+
+    public void isEaten() {
+        collisionDetected = true;
+    }
+
         
 }

@@ -4,7 +4,9 @@ public class Game {
 
     private Grid grid;
     private Player player;
+    public Apple apple;
     private int delay;
+    public Background background;
     private int velocityCol;
     private int velocityRow;
 
@@ -12,12 +14,12 @@ public class Game {
     Game(int cols, int rows, int delay) {
 
         grid = new Grid(cols, rows);
-        Background background = new Background();
-        KeyboardLogic keyboardLogic = new KeyboardLogic();
+        background = new Background();
         CollisionLogic collisionLogic = new CollisionLogic();
-        Player player = new Player(grid);
+        KeyboardLogic keyboardLogic = new KeyboardLogic(collisionLogic);
+        player = new Player(grid);
         Player collisionBox = new Player(grid);
-        Apple apple = new Apple(grid);
+        apple = new Apple(grid);
         keyboardLogic.setPlayer(player);
         keyboardLogic.setCollisionBox(collisionBox);
         this.delay = delay;

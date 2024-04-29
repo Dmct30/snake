@@ -10,9 +10,13 @@ public class KeyboardLogic implements KeyboardHandler {
     private Keyboard keyboard;
     public Player player;
     public Player collisionBox;
+    public CollisionLogic collisionLogic;
+    public Apple apple;
 
-    public KeyboardLogic() {
+
+    public KeyboardLogic(CollisionLogic collisionLogic) {
         keyboard = new Keyboard(this);
+        this.collisionLogic = collisionLogic;
         init();
     }
 
@@ -51,21 +55,25 @@ public class KeyboardLogic implements KeyboardHandler {
         if(keyboardEvent.getKey() == KeyboardEvent.KEY_D){
             player.moveRight();
             collisionBox.moveRight();
+            collisionLogic.collisionDetected(player,apple);
         }
 
         if(keyboardEvent.getKey() == KeyboardEvent.KEY_A){
             player.moveLeft();
             collisionBox.moveLeft();
+            collisionLogic.collisionDetected(player,apple);
         }
 
         if(keyboardEvent.getKey() == KeyboardEvent.KEY_W){
             player.moveUp();
             collisionBox.moveUp();
+            collisionLogic.collisionDetected(player,apple);
         }
 
         if(keyboardEvent.getKey() == KeyboardEvent.KEY_S){
             player.moveDown();
             collisionBox.moveDown();
+            collisionLogic.collisionDetected(player,apple);
         }
     }
 

@@ -10,6 +10,7 @@ public class Apple {
     private int col;
     private int row;
     private Rectangle appleCollisionBox;
+    public  boolean collisionDetected;
 
     public Apple(Grid grid){
         this.grid = grid;
@@ -40,4 +41,9 @@ public class Apple {
     public int getAppleHeight(){
         return row + grid.getCellSize();
     }
+
+    public void isEaten() {
+        collisionDetected = true;
+    }
+
 }
