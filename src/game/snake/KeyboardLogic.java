@@ -23,6 +23,9 @@ public class KeyboardLogic implements KeyboardHandler {
     public void setPlayer(Player player) {
         this.player = player;
     }
+    public void setApple(Apple apple) {
+        this.apple = apple;
+    }
 
     public void setCollisionBox(Player collisionBox) {
         this.collisionBox = collisionBox;
@@ -55,31 +58,29 @@ public class KeyboardLogic implements KeyboardHandler {
         if(keyboardEvent.getKey() == KeyboardEvent.KEY_D){
             player.moveRight();
             collisionBox.moveRight();
-            collisionLogic.collisionDetected(player,apple);
+//            collisionLogic.collisionDetected(player,apple);
         }
 
         if(keyboardEvent.getKey() == KeyboardEvent.KEY_A){
             player.moveLeft();
             collisionBox.moveLeft();
-            collisionLogic.collisionDetected(player,apple);
+//            collisionLogic.collisionDetected(player,apple);
         }
 
         if(keyboardEvent.getKey() == KeyboardEvent.KEY_W){
             player.moveUp();
             collisionBox.moveUp();
-            collisionLogic.collisionDetected(player,apple);
+//            collisionLogic.collisionDetected(player,apple);
         }
 
         if(keyboardEvent.getKey() == KeyboardEvent.KEY_S){
             player.moveDown();
             collisionBox.moveDown();
-            collisionLogic.collisionDetected(player,apple);
+//            collisionLogic.collisionDetected(player,apple);
         }
     }
 
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
-
-
     }
 }
