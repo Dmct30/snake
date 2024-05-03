@@ -2,6 +2,7 @@ package game.snake;
 
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 
 public class Player {
 
@@ -9,9 +10,7 @@ public class Player {
     private int col;
     private int row;
     private Rectangle player;
-    private Rectangle collisionBox;
-    private boolean collisionDetected = false;
-    private CollisionLogic collisionLogic;
+    ;
 
     public Player(Grid grid) {
         this.grid = grid;
@@ -21,8 +20,8 @@ public class Player {
         player = new Rectangle(grid.columnToX(col), grid.rowToY(row), grid.getCellSize(), grid.getCellSize());
         player.setColor(Color.GREEN);
         player.fill();
-        collisionBox = new Rectangle(grid.columnToX(col), grid.rowToY(row), grid.getCellSize(), grid.getCellSize());
     }
+
 
     public int getPlayerCol() {
         return col;
@@ -36,25 +35,35 @@ public class Player {
         return col + grid.getCellSize();
     }
 
-    public int getPlayerHeight(){
+    public int getPlayerHeight() {
         return row + grid.getCellSize();
     }
 
     public void moveRight() {
-        player.translate(GameConfig.GAMESPEED, 0);
-        collisionBox.translate(GameConfig.GAMESPEED,0);
-    }
-    public void moveLeft() {
-        player.translate(-GameConfig.GAMESPEED, 0);
-        collisionBox.translate(-GameConfig.GAMESPEED,0);
-    }
-    public void moveUp() {
-        player.translate(0, -GameConfig.GAMESPEED);
-        collisionBox.translate(0,-GameConfig.GAMESPEED);
-    }
-    public void moveDown() {
-        player.translate(0, GameConfig.GAMESPEED);
-        collisionBox.translate(0,GameConfig.GAMESPEED);
+        if (col < grid.getCols() - 1) {  // Check if moving right will go beyond the grid boundary
+            player.translate(GameConfig.GAMESPEED, 0);
+            col++;
+        }
     }
 
+    public void moveLeft() {
+        if (col > 0) {  // Check if moving left will go beyond the grid boundary
+            player.translate(-GameConfig.GAMESPEED, 0);
+            col--;
+        }
+    }
+
+    public void moveUp() {
+        if (row > 0) {  // Check if moving up will go beyond the grid boundary
+            player.translate(0, -GameConfig.GAMESPEED);
+            row--;
+        }
+    }
+
+    public void moveDown() {
+        if (row < grid.getRows() - 1) {  // Check if moving down will go beyond the grid boundary
+            player.translate(0, GameConfig.GAMESPEED);
+            row++;
+        }
+    }
 }
