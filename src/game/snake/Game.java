@@ -5,22 +5,17 @@ public class Game {
     private Grid grid;
     private Player player;
     private Apple apple;
-    private int delay;
     public Background background;
+    public int delay;
 
-    Game(int cols, int rows, int delay) {
-
-        grid = new Grid(cols, rows);
-        background = new Background();
-        apple = new Apple(grid);
-        player = new Player(grid);
-        CollisionLogic collisionLogic = new CollisionLogic();
-        KeyboardLogic keyboardLogic = new KeyboardLogic(collisionLogic);
-        Player collisionBox = new Player(grid);
+    Game() {
+        this.grid = new Grid(50, 50);
+        this.background = new Background();
+        this.apple = new Apple(grid);
+        this.player = new Player(grid);
+        KeyboardLogic keyboardLogic = new KeyboardLogic();
         keyboardLogic.setPlayer(player);
-        keyboardLogic.setApple(apple);
-        keyboardLogic.setCollisionBox(collisionBox);
-        this.delay = delay;
+        this.delay = 150;
     }
 
     public void init(){
@@ -31,27 +26,50 @@ public class Game {
 
         while (true) {
 
-            // Pause for a while
             Thread.sleep(delay);
-            checkCollision(player, apple);
-          //  moveSnake();
 
+            moveSnake();
         }
     }
 
-    public void checkCollision (Player player, Apple apple) {
-//        if (player.getPlayerCol() + player.getPlayerWidth() > apple.getAppleCol()
-//                && player.getPlayerRow() + player.getPlayerHeight() > apple.getAppleRow()
-//                && player.getPlayerCol() < apple.getAppleCol() + apple.getAppleWidth()
-//                && player.getPlayerRow() < apple.getAppleRow() + apple.getAppleHeight()) {
-
-        if (player.getPlayerCol() == apple.getAppleCol()
-        && player.getPlayerRow() == apple.getAppleRow()) {
-
-            System.out.println("Colided");
-            apple.eat();
-        }
-
+    public void moveSnake(){
+        //player.move();
+        checkApple();
+        checkCollisions();
     }
 
+    public void checkApple(){
+        if ((player.getPlayerCol() == apple.getAppleCol()) && (player.getPlayerRow() == apple.getAppleRow())) {
+            //bodyParts++;
+            //applesEaten++;
+            apple = new Apple(grid);
+        }
+    }
+
+    public void checkCollisions(){
+        //TODO check collision with body
+        //for (int i = bodyParts; i > 0; i--){
+        //    if ((player.getPlayerCol()[0] == player.getPlayerCol()[i]) && (player.getPlayerRow()[0]) == player.getPlayerRow()[i])){
+                //terminate game
+        //    }
+        //}
+
+        //Left Wall
+        if (player.getPlayerCol() < 0){
+            System.out.println("Game Over");
+        }
+        //Right Wall
+        if (player.getPlayerCol() > grid.getCols() -1 ){
+            System.out.println("Game Over");
+        }
+        //Top Wall
+        if (player.getPlayerRow() < 0){
+            System.out.println("Game Over");
+            //stop();
+        }
+        //Down Wall
+        if (player.getPlayerRow() > grid.getRows() -1){
+            System.out.println("Game Over");
+        }
+    }
 }

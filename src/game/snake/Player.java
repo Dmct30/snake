@@ -4,13 +4,15 @@ import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 
+import java.security.PublicKey;
+
 public class Player {
 
     private Grid grid;
     private int col;
     private int row;
     private Rectangle player;
-    ;
+    public Game game;
 
     public Player(Grid grid) {
         this.grid = grid;
@@ -31,39 +33,43 @@ public class Player {
         return row;
     }
 
-    public int getPlayerWidth() {
-        return col + grid.getCellSize();
-    }
-
-    public int getPlayerHeight() {
-        return row + grid.getCellSize();
-    }
 
     public void moveRight() {
-        if (col < grid.getCols() - 1) {  // Check if moving right will go beyond the grid boundary
-            player.translate(GameConfig.GAMESPEED, 0);
-            col++;
-        }
+        player.translate(GameConfig.GAMESPEED, 0);
+        col++;
     }
 
     public void moveLeft() {
-        if (col > 0) {  // Check if moving left will go beyond the grid boundary
-            player.translate(-GameConfig.GAMESPEED, 0);
-            col--;
-        }
+        player.translate(-GameConfig.GAMESPEED, 0);
+        col--;
     }
 
     public void moveUp() {
-        if (row > 0) {  // Check if moving up will go beyond the grid boundary
-            player.translate(0, -GameConfig.GAMESPEED);
-            row--;
-        }
+        player.translate(0, -GameConfig.GAMESPEED);
+        row--;
     }
 
     public void moveDown() {
-        if (row < grid.getRows() - 1) {  // Check if moving down will go beyond the grid boundary
-            player.translate(0, GameConfig.GAMESPEED);
-            row++;
-        }
+       player.translate(0, GameConfig.GAMESPEED);
+       row++;
     }
+
+    /*@Override
+    public void move(){
+
+        switch (direction) {
+            case UP:
+                pos.moveUp();
+                break;
+            case DOWN:
+                pos.moveDown();
+                break;
+            case LEFT:
+                pos.moveLeft();
+                break;
+            case RIGHT:
+                pos.moveRight();
+                break;
+
+        }*/
 }

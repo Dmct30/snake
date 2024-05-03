@@ -9,6 +9,5 @@ public class Background {
     public Background(){
         background = new Picture(10,10,"resources/sandResize.png");
         background.draw();
-
     }
 }
