@@ -9,26 +9,14 @@ public class KeyboardLogic implements KeyboardHandler {
 
     private Keyboard keyboard;
     public Player player;
-    public Player collisionBox;
-    public CollisionLogic collisionLogic;
-    public Apple apple;
 
-
-    public KeyboardLogic(CollisionLogic collisionLogic) {
+    public KeyboardLogic() {
         keyboard = new Keyboard(this);
-        this.collisionLogic = collisionLogic;
         init();
     }
 
     public void setPlayer(Player player) {
         this.player = player;
-    }
-    public void setApple(Apple apple) {
-        this.apple = apple;
-    }
-
-    public void setCollisionBox(Player collisionBox) {
-        this.collisionBox = collisionBox;
     }
 
     private void init() {
@@ -57,26 +45,18 @@ public class KeyboardLogic implements KeyboardHandler {
     public void keyPressed(KeyboardEvent keyboardEvent) {
         if(keyboardEvent.getKey() == KeyboardEvent.KEY_D){
             player.moveRight();
-            collisionBox.moveRight();
-//            collisionLogic.collisionDetected(player,apple);
         }
 
         if(keyboardEvent.getKey() == KeyboardEvent.KEY_A){
             player.moveLeft();
-            collisionBox.moveLeft();
-//            collisionLogic.collisionDetected(player,apple);
         }
 
         if(keyboardEvent.getKey() == KeyboardEvent.KEY_W){
             player.moveUp();
-            collisionBox.moveUp();
-//            collisionLogic.collisionDetected(player,apple);
         }
 
         if(keyboardEvent.getKey() == KeyboardEvent.KEY_S){
             player.moveDown();
-            collisionBox.moveDown();
-//            collisionLogic.collisionDetected(player,apple);
         }
     }
 
