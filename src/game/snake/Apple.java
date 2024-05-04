@@ -18,6 +18,11 @@ public class Apple {
         apple.fill();
     }
 
+    public void appleDisappear(){
+        apple.delete();
+    }
+
+
     public int getAppleCol() {
         return col;
     }
