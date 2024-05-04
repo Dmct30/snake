@@ -1,5 +1,7 @@
 package game.snake;
 
+import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+
 public class Game {
 
     private Grid grid;
@@ -7,6 +9,7 @@ public class Game {
     private Apple apple;
     public Background background;
     public int delay;
+    int applesEaten = 0;
 
     Game() {
         this.grid = new Grid(50, 50);
@@ -41,7 +44,8 @@ public class Game {
     public void checkApple(){
         if ((player.getPlayerCol() == apple.getAppleCol()) && (player.getPlayerRow() == apple.getAppleRow())) {
             //bodyParts++;
-            //applesEaten++;
+            applesEaten++;
+            apple.appleDisappear();
             apple = new Apple(grid);
         }
     }
