@@ -8,6 +8,7 @@ public class Game {
     private Player player;
     private Apple apple;
     public Background background;
+    private Obstacles obstacles;
     public int delay;
     int applesEaten = 0;
 
@@ -16,6 +17,7 @@ public class Game {
         this.background = new Background();
         this.apple = new Apple(grid);
         this.player = new Player(grid);
+        this.obstacles = new Obstacles (grid);
         KeyboardLogic keyboardLogic = new KeyboardLogic();
         keyboardLogic.setPlayer(player);
         this.delay = 150;
@@ -23,6 +25,7 @@ public class Game {
 
     public void init(){
         grid.init();
+
     }
 
     public void start() throws InterruptedException {
@@ -50,29 +53,38 @@ public class Game {
         }
     }
 
-    public void checkCollisions(){
+
+    public void checkCollisions() {
         //TODO check collision with body
         //for (int i = bodyParts; i > 0; i--){
         //    if ((player.getPlayerCol()[0] == player.getPlayerCol()[i]) && (player.getPlayerRow()[0]) == player.getPlayerRow()[i])){
-                //terminate game
+        //terminate game
         //    }
         //}
 
         //Left Wall
-        if (player.getPlayerCol() < 0){
+        if (player.getPlayerCol() < 0) {
             System.out.println("Game Over");
         }
         //Right Wall
-        if (player.getPlayerCol() > grid.getCols() -1 ){
+        if (player.getPlayerCol() > grid.getCols() - 1) {
             System.out.println("Game Over");
         }
         //Top Wall
-        if (player.getPlayerRow() < 0){
+        if (player.getPlayerRow() < 0) {
             System.out.println("Game Over");
             //stop();
         }
         //Down Wall
-        if (player.getPlayerRow() > grid.getRows() -1){
+        if (player.getPlayerRow() > grid.getRows() - 1) {
+            System.out.println("Game Over");
+        }
+
+//        if ((player.getPlayerCol() == obstacles.getObstaclesCol()+ obstacles.getObstaclesHeight()) && (player.getPlayerRow() == obstacles.getObstaclesRow()+ obstacles.getObstaclesWidth())) {
+//            System.out.println("Game Over");
+//        }
+
+        if ((player.getPlayerCol() == obstacles.getObstaclesCol()) && (player.getPlayerRow() == obstacles.getObstaclesRow())) {
             System.out.println("Game Over");
         }
     }
