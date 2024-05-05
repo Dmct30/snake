@@ -9,6 +9,7 @@ public class Game {
     public Background background;
     public int delay;
     int applesEaten = 0;
+    private boolean isRunning;
 
     Game() {
         this.grid = new Grid(50, 50);
@@ -18,6 +19,7 @@ public class Game {
         KeyboardLogic keyboardLogic = new KeyboardLogic();
         keyboardLogic.setPlayer(player);
         this.delay = 150;
+        this.isRunning = false;
     }
 
     public void init(){
@@ -25,13 +27,23 @@ public class Game {
     }
 
     public void start() throws InterruptedException {
+        isRunning = true;
 
         while (true) {
 
             Thread.sleep(delay);
 
-            moveSnake();
+            if(isRunning) {
+                moveSnake();
+            }
         }
+    }
+
+    public void stop() {
+        isRunning = false;
+        player.playerDisappear();
+        background.drawGameOver();
+        //System.exit(0);
     }
 
     public void moveSnake(){
@@ -46,6 +58,7 @@ public class Game {
             applesEaten++;
             apple.appleDisappear();
             apple = new Apple(grid);
+            player.addBodyPart();
         }
     }
 
@@ -58,21 +71,24 @@ public class Game {
         //}
 
         //Left Wall
-        if (player.getPlayerCol() < 0){
+        if (player.getPlayerCol() < 0) {
             System.out.println("Game Over");
+            stop();
         }
         //Right Wall
         if (player.getPlayerCol() > grid.getCols() -1 ){
             System.out.println("Game Over");
+            stop();
         }
         //Top Wall
         if (player.getPlayerRow() < 0){
             System.out.println("Game Over");
-            //stop();
+            stop();
         }
         //Down Wall
         if (player.getPlayerRow() > grid.getRows() -1){
             System.out.println("Game Over");
+            stop();
         }
     }
 }
