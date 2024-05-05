@@ -22,7 +22,6 @@ public class Apple {
         apple.delete();
     }
 
-
     public int getAppleCol() {
         return col;
     }

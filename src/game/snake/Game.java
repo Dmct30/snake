@@ -1,10 +1,9 @@
 package game.snake;
 
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
-
 public class Game {
 
     private Grid grid;
+    private Direction direction;
     private Player player;
     private Apple apple;
     public Background background;
@@ -15,7 +14,7 @@ public class Game {
         this.grid = new Grid(50, 50);
         this.background = new Background();
         this.apple = new Apple(grid);
-        this.player = new Player(grid);
+        this.player = new Player(grid, direction);
         KeyboardLogic keyboardLogic = new KeyboardLogic();
         keyboardLogic.setPlayer(player);
         this.delay = 150;
@@ -36,7 +35,7 @@ public class Game {
     }
 
     public void moveSnake(){
-        //player.move();
+        player.move();
         checkApple();
         checkCollisions();
     }

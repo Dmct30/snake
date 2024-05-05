@@ -2,20 +2,18 @@ package game.snake;
 
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
-import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 
-import java.security.PublicKey;
-
-public class Player {
+public class Player implements Movable{
 
     private Grid grid;
     private int col;
     private int row;
     private Rectangle player;
-    public Game game;
+    private Direction currentDirection;
 
-    public Player(Grid grid) {
+    public Player(Grid grid, Direction currentDirection) {
         this.grid = grid;
+        this.currentDirection = Direction.RIGHT;
         this.col = 25;
         this.row = 25;
         // player = new Picture(300, 300,"resources/snake.png");
@@ -35,41 +33,56 @@ public class Player {
 
 
     public void moveRight() {
-        player.translate(GameConfig.GAMESPEED, 0);
-        col++;
+        if (currentDirection != Direction.LEFT){
+            player.translate(GameConfig.GAMESPEED, 0);
+            col++;
+        }
     }
 
     public void moveLeft() {
-        player.translate(-GameConfig.GAMESPEED, 0);
-        col--;
+        if (currentDirection != Direction.RIGHT){
+            player.translate(-GameConfig.GAMESPEED, 0);
+            col--;
+        }
     }
 
     public void moveUp() {
-        player.translate(0, -GameConfig.GAMESPEED);
-        row--;
+        if (currentDirection != Direction.DOWN) {
+            player.translate(0, -GameConfig.GAMESPEED);
+            row--;
+        }
     }
 
     public void moveDown() {
-       player.translate(0, GameConfig.GAMESPEED);
-       row++;
+       if (currentDirection != Direction.UP){
+           player.translate(0, GameConfig.GAMESPEED);
+           row++;
+       }
     }
 
-    /*@Override
-    public void move(){
+    @Override
+    public void move() {
 
-        switch (direction) {
+        switch (currentDirection) {
             case UP:
-                pos.moveUp();
+                moveUp();
                 break;
             case DOWN:
-                pos.moveDown();
+                moveDown();
                 break;
             case LEFT:
-                pos.moveLeft();
+                moveLeft();
                 break;
             case RIGHT:
-                pos.moveRight();
+                moveRight();
                 break;
+        }
+    }
+    public Direction getCurrentDirection() {
+        return currentDirection;
+    }
 
-        }*/
+    public void setCurrentDirection(Direction currentDirection) {
+        this.currentDirection = currentDirection;
+    }
 }
