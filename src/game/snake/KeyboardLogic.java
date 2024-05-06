@@ -9,10 +9,8 @@ public class KeyboardLogic implements KeyboardHandler {
 
     private Keyboard keyboard;
     public Player player;
-    private Direction direction;
 
     public KeyboardLogic() {
-        this.direction = Direction.chooseDirection();
         keyboard = new Keyboard(this);
         init();
     }
@@ -48,39 +46,29 @@ public class KeyboardLogic implements KeyboardHandler {
 
         switch (keyboardEvent.getKey()) {
                 case KeyboardEvent.KEY_A:
-                player.setCurrentDirection(Direction.LEFT);
+                    if (player.getCurrentDirection() != Direction.RIGHT) {
+                        player.setCurrentDirection(Direction.LEFT);
+                    }
                 break;
                 case KeyboardEvent.KEY_D:
-                player.setCurrentDirection(Direction.RIGHT);
+                    if (player.getCurrentDirection() != Direction.LEFT) {
+                        player.setCurrentDirection(Direction.RIGHT);
+                    }
                 break;
                 case KeyboardEvent.KEY_W:
-                player.setCurrentDirection(Direction.UP);
+                    if (player.getCurrentDirection() != Direction.DOWN) {
+                        player.setCurrentDirection(Direction.UP);
+                    }
                 break;
                 case KeyboardEvent.KEY_S:
-                player.setCurrentDirection(Direction.DOWN);
+                    if (player.getCurrentDirection() != Direction.UP) {
+                        player.setCurrentDirection(Direction.DOWN);
+                    }
                 break;
         }
-
     }
 
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
-        player.move();
     }
-
-          /* if(keyboardEvent.getKey() == KeyboardEvent.KEY_D){
-            player.moveRight();
-        }
-
-        if(keyboardEvent.getKey() == KeyboardEvent.KEY_A){
-            player.moveLeft();
-        }
-
-        if(keyboardEvent.getKey() == KeyboardEvent.KEY_W){
-            player.moveUp();
-        }
-
-        if(keyboardEvent.getKey() == KeyboardEvent.KEY_S){
-            player.moveDown();
-        }*/
 }

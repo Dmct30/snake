@@ -19,7 +19,6 @@ public class Player implements Movable{
         this.currentDirection = Direction.RIGHT;
         this.col = 25;
         this.row = 25;
-        // player = new Picture(300, 300,"resources/snake.png");
         bodyParts = new ArrayList<>();
         player = new Rectangle(grid.columnToX(col), grid.rowToY(row), grid.getCellSize(), grid.getCellSize());
         player.setColor(Color.GREEN);

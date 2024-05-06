@@ -5,6 +5,7 @@ public class Game {
     private Grid grid;
     private Direction direction;
     private Player player;
+    private int bodyParts;
     private Apple apple;
     public Background background;
     public int delay;
@@ -54,7 +55,6 @@ public class Game {
 
     public void checkApple(){
         if ((player.getPlayerCol() == apple.getAppleCol()) && (player.getPlayerRow() == apple.getAppleRow())) {
-            //bodyParts++;
             applesEaten++;
             apple.appleDisappear();
             apple = new Apple(grid);
@@ -64,30 +64,36 @@ public class Game {
 
     public void checkCollisions(){
         //TODO check collision with body
-        //for (int i = bodyParts; i > 0; i--){
-        //    if ((player.getPlayerCol()[0] == player.getPlayerCol()[i]) && (player.getPlayerRow()[0]) == player.getPlayerRow()[i])){
-                //terminate game
-        //    }
-        //}
+        /*for (int i = bodyParts; i > 0; i--){
+            if ((player.getPlayerCol()[0] == player.getPlayerCol()[i]) && (player.getPlayerRow()[0] == player.getPlayerRow()[i])){
+                System.out.println("Game Over");
+                System.out.println("Apples Eaten: " + applesEaten);
+                stop();
+            }
+        }*/
 
         //Left Wall
         if (player.getPlayerCol() < 0) {
             System.out.println("Game Over");
+            System.out.println("Apples Eaten: " + applesEaten);
             stop();
         }
         //Right Wall
         if (player.getPlayerCol() > grid.getCols() -1 ){
             System.out.println("Game Over");
+            System.out.println("Apples Eaten: " + applesEaten);
             stop();
         }
         //Top Wall
         if (player.getPlayerRow() < 0){
             System.out.println("Game Over");
+            System.out.println("Apples Eaten: " + applesEaten);
             stop();
         }
         //Down Wall
         if (player.getPlayerRow() > grid.getRows() -1){
             System.out.println("Game Over");
+            System.out.println("Apples Eaten: " + applesEaten);
             stop();
         }
     }
